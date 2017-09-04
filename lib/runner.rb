@@ -2,4 +2,4 @@ require_relative 'board.rb'
 
 board = Board.new
 
-board.empty_board
+board = board.empty_board
