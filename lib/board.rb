@@ -57,29 +57,53 @@ class Board
       h_or_m
     end
 
-  def place_ship(coordinate, ship_array =[])
+  def place_ship(start_coord, end_coord, ship_array =[])
     #check coordinate validity
-    ship_array << coordinate
+    ship_array << start_coord
+    ship_array << end_coord
+    ship_array
   end
 
     def coordinate_already_picked(coordinate, ship_array)
       if ship_array.any? {|spot| coordinate == spot}
-        "ships cannot overlap"
+        "ship is invalid: ships cannot overlap"
       end
     end
 
     def ship_off_board(coordinate, ship_array)
       if empty_board.none? {|spot| coordinate == spot[0]}
-        "please choose a spot on the board"
+        "ship is invalid: please choose a spot on the board"
       end
     end
 
-    def horizontal_ship
-
+    def ship_orientation(start_coord, end_coord, ship_length)
+      if start_coord.last == end_coord.last
+        horizontal_ship(start_coord, end_coord, ship_length)
+      elsif start_coord.first == end_coord.first
+        vertical_ship(start_coord, end_coord, ship_length)
+      else
+        "ship is invalid: cannot place diagonal"
+      end
     end
 
-    def vertical_ship
+      def horizontal_ship(start_coord, end_coord, ship_length)
+        check_horizontal_ship_length(start_coord, end_coord, ship_length)
+      end
 
-    end
+        def check_horizontal_ship_length(start_coord, end_coord, ship_length)
+          if abs(start_coord.first.ord - end_coord.first.ord) != ship_length - 1
+            "ship is invalid: incorrect ship length"
+          end
+        end
+
+      def vertical_ship(start_coord, end_coord, ship_length)
+        check_vertical_ship_length(start_coord, end_coord, ship_length)
+      end
+
+        def check_vertical_ship_length(start_coord, end_coord, ship_length)
+          if abs(start_coord.last - end_coord.last) != ship_length - 1
+            "ship is invalid: incorrect ship length"
+          end
+        end
 
 end
