@@ -29,28 +29,33 @@ class Board
     if coordinate != " "
       "this location has already been fired upon, please choose another coordinate"
     else
-      place_shot(coordinate, board)
+      board = place_shot(coordinate, board)
     end
+    render_board(board)
   end
 
   def place_shot(coordinate, board)
     board.map do |space|
       if coordinate == space[0]
-        space[1] == fire(space[0])
+        [coordinate, fire(space[0])]
+      else
+        space
       end
     end
   end
 
-  def fire(coordinate)
+  #ship_array default just for testing
+  def fire(coordinate, ship_array = [])
+    h_or_m = '?'
     ship_array.each do |ship_spot|
       if coordinate == ship_spot
-        ship = 'H'
+        h_or_m = 'H'
         break
       else
-        ship = 'M'
+        h_or_m = 'M'
       end
     end
-    return ship
+    return h_or_m
   end
 
   def ship_array

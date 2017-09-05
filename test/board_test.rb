@@ -19,10 +19,50 @@ class BoardTest < Minitest::Test
     assert_equal "    ", board.print_row(a)
   end
 
-  def test_can_render_empty_board
-    assert_nil board.empty_board
-    #note: should see visible printed board
+  def test_empty_board
+    empty_board =
+      [
+        ["A1", " "], ["A2", " "], ["A3", " "], ["A4", " "],
+        ["B1", " "], ["B2", " "], ["B3", " "], ["B4", " "],
+        ["C1", " "], ["C2", " "], ["C3", " "], ["C4", " "],
+        ["D1", " "], ["D2", " "], ["D3", " "], ["D4", " "]
+      ]
+
+    assert_equal empty_board, board.empty_board
   end
 
+  def test_render_board
+    current_board = board.empty_board
+
+    assert_nil board.render_board(current_board)
+    # note: should see visible printed board where the test was run
+  end
+
+  def test_shot
+    current_board = board.empty_board
+
+    assert_nil board.shot("A1", current_board)
+  end
+
+  def test_place_shot
+    current_board = board.empty_board
+    new_board =
+      [
+        ["A1", "?"], ["A2", " "], ["A3", " "], ["A4", " "],
+        ["B1", " "], ["B2", " "], ["B3", " "], ["B4", " "],
+        ["C1", " "], ["C2", " "], ["C3", " "], ["C4", " "],
+        ["D1", " "], ["D2", " "], ["D3", " "], ["D4", " "]
+      ]
+
+    assert_equal new_board, board.place_shot("A1", current_board)
+  end
+
+  def test_fire_returns_hit_or_miss
+    ship_array = ["A1", "A2"]
+
+    assert_equal "H", board.fire("A1", ship_array)
+    assert_equal "M", board.fire("B1", ship_array)
+
+  end
 
 end
