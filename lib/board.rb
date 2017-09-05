@@ -9,13 +9,12 @@ class Board
     ]
   end
 
-#doesn't render new hits
   def render_board(board)
     puts ". 1 2 3 4"
-    puts "A"
-    puts "B"
-    puts "C"
-    puts "D"
+    puts "A #{board[0..3].map {|spot| spot[1]}.join}"
+    puts "B #{board[4..7].map {|spot| spot[1]}.join}"
+    puts "C #{board[8..11].map {|spot| spot[1]}.join}"
+    puts "D #{board[12..15].map {|spot| spot[1]}.join}"
   end
 
   def print_row(row)
@@ -58,8 +57,10 @@ class Board
     return h_or_m
   end
 
-  def ship_array
-
+  def place_ship(coordinate)
+    ship_array = []
+    #check coordinate validity
+    ship_array << coordinate
   end
 
 end
