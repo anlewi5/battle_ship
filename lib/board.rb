@@ -33,34 +33,53 @@ class Board
     render_board(board)
   end
 
-  def place_shot(coordinate, board)
-    board.map do |space|
-      if coordinate == space[0]
-        [coordinate, fire(space[0])]
-      else
-        space
+    def place_shot(coordinate, board)
+      board.map do |space|
+        if coordinate == space[0]
+          [coordinate, fire(space[0])]
+        else
+          space
+        end
       end
     end
-  end
 
-  #ship_array default just for testing
-  def fire(coordinate, ship_array = [])
-    h_or_m = '?'
-    ship_array.each do |ship_spot|
-      if coordinate == ship_spot
-        h_or_m = 'H'
-        break
-      else
-        h_or_m = 'M'
+    #ship_array default just for testing
+    def fire(coordinate, ship_array = [])
+      h_or_m = '?'
+      ship_array.each do |ship_spot|
+        if coordinate == ship_spot
+          h_or_m = 'H'
+          break
+        else
+          h_or_m = 'M'
+        end
       end
+      h_or_m
     end
-    return h_or_m
-  end
 
-  def place_ship(coordinate)
-    ship_array = []
+  def place_ship(coordinate, ship_array =[])
     #check coordinate validity
     ship_array << coordinate
   end
+
+    def coordinate_already_picked(coordinate, ship_array)
+      if ship_array.any? {|spot| coordinate == spot}
+        "ships cannot overlap"
+      end
+    end
+
+    def ship_off_board(coordinate, ship_array)
+      if empty_board.none? {|spot| coordinate == spot[0]}
+        "please choose a spot on the board"
+      end
+    end
+
+    def horizontal_ship
+
+    end
+
+    def vertical_ship
+
+    end
 
 end
