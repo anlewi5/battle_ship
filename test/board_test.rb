@@ -58,7 +58,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_fire_returns_hit_or_miss
-    ship_array = ["A1", "A2"]
+    ship_array = [["A1", "A2"]]
 
     assert_equal "H", board.fire("A1", ship_array)
     assert_equal "M", board.fire("B1", ship_array)
@@ -66,15 +66,25 @@ class BoardTest < Minitest::Test
   end
 
   def test_place_ship
+    coordinate_array = ["A1", "A2"]
 
+    assert_equal [["A1", "A2"]], board.place_ship(coordinate_array)
   end
 
   def test_coordinate_already_picked
+    ship_array = [["A1", "A2"]]
+    coordinate = "A1"
+    overlap_error = "ship is invalid: ships cannot overlap"
 
+    assert_equal overlap_error, board.coordinate_already_picked(coordinate, ship_array)
   end
 
   def test_ship_off_board
+    ship_array = [["A1", "A2"]]
+    coordinate = "A5"
+    off_board_error = "ship is invalid: please choose a spot on the board"
 
+    assert_equal off_board_error, board.ship_off_board(coordinate, ship_array)
   end
 
 end

@@ -13,6 +13,12 @@ class ShipTest < Minitest::Test
     assert_instance_of Ship, ship
   end
 
+  def test_coordinate_array_exists
+    ship.coordinates("A1 B1")
+
+    assert_equal ["A1", "B1"], ship.coordinate_array
+  end
+
   def test_coordinates_sets_start_and_end_coordinates
     ship.coordinates("A1 B1")
 
@@ -63,11 +69,11 @@ class ShipTest < Minitest::Test
     horizontal_ship.coordinates("A1 A2")
     diagonal_ship = Ship.new
     diagonal_ship.coordinates("A1 B2")
-    error_output = "ship is invalid: incorrect ship length"
+    length_error = "ship is invalid: incorrect ship length"
     diagonal_error = "ship is invalid: cannot place diagonal"
 
-    assert_equal error_output, vertical_ship.ship_orientation(3)
-    assert_equal error_output, horizontal_ship.ship_orientation(3)
+    assert_equal length_error, vertical_ship.ship_orientation(3)
+    assert_equal length_error, horizontal_ship.ship_orientation(3)
     assert_equal diagonal_error, diagonal_ship.ship_orientation(3)
   end
 

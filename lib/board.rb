@@ -46,7 +46,7 @@ class Board
     #ship_array default just for testing
     def fire(coordinate, ship_array = [])
       h_or_m = '?'
-      ship_array.each do |ship_spot|
+      ship_array.flatten.each do |ship_spot|
         if coordinate == ship_spot
           h_or_m = 'H'
           break
@@ -57,15 +57,14 @@ class Board
       h_or_m
     end
 
-  def place_ship(start_coord, end_coord, ship_array =[])
+  def place_ship(coordinate_array, ship_array =[])
     #check coordinate validity
-    ship_array << start_coord
-    ship_array << end_coord
+    ship_array << coordinate_array
     ship_array
   end
 
     def coordinate_already_picked(coordinate, ship_array)
-      if ship_array.any? {|spot| coordinate == spot}
+      if ship_array.flatten.any? {|spot| coordinate == spot}
         "ship is invalid: ships cannot overlap"
       end
     end
@@ -75,35 +74,5 @@ class Board
         "ship is invalid: please choose a spot on the board"
       end
     end
-
-    def ship_orientation(start_coord, end_coord, ship_length)
-      if start_coord.last == end_coord.last
-        horizontal_ship(start_coord, end_coord, ship_length)
-      elsif start_coord.first == end_coord.first
-        vertical_ship(start_coord, end_coord, ship_length)
-      else
-        "ship is invalid: cannot place diagonal"
-      end
-    end
-
-      def horizontal_ship(start_coord, end_coord, ship_length)
-        check_horizontal_ship_length(start_coord, end_coord, ship_length)
-      end
-
-        def check_horizontal_ship_length(start_coord, end_coord, ship_length)
-          if abs(start_coord.first.ord - end_coord.first.ord) != ship_length - 1
-            "ship is invalid: incorrect ship length"
-          end
-        end
-
-      def vertical_ship(start_coord, end_coord, ship_length)
-        check_vertical_ship_length(start_coord, end_coord, ship_length)
-      end
-
-        def check_vertical_ship_length(start_coord, end_coord, ship_length)
-          if abs(start_coord.last - end_coord.last) != ship_length - 1
-            "ship is invalid: incorrect ship length"
-          end
-        end
 
 end
