@@ -1,5 +1,12 @@
 class Board
 
+    attr_accessor :board
+
+  def initialize
+    @board = empty_board
+    @ship_array = []
+  end
+
   def empty_board
     [
       ["A1", " "], ["A2", " "], ["A3", " "], ["A4", " "],
@@ -74,5 +81,15 @@ class Board
         "ship is invalid: please choose a spot on the board"
       end
     end
+
+  def hit_array
+    hit_array = []
+    board.each {|spot| hit_array << spot[0] if spot[1] == "H"}
+    hit_array
+  end
+
+  def sunk
+
+  end
 
 end
