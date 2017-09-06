@@ -65,4 +65,16 @@ class BoardTest < Minitest::Test
 
   end
 
+  def test_place_ship
+
+  end
+
+  def test_coordinate_already_picked
+
+  end
+
+  def test_ship_off_board
+
+  end
+
 end
