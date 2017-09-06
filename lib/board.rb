@@ -1,10 +1,12 @@
 class Board
 
-    attr_accessor :board
+  attr_accessor :board,
+                :ship_array
 
   def initialize
     @board = empty_board
     @ship_array = []
+    @hit_array = []
   end
 
   def empty_board
@@ -82,14 +84,20 @@ class Board
       end
     end
 
-  def hit_array
-    hit_array = []
-    board.each {|spot| hit_array << spot[0] if spot[1] == "H"}
-    hit_array
+  def hits
+    board.each {|spot| @hit_array << spot[0] if spot[1] == "H"}
+    @hit_array
   end
 
   def sunk
-
+    sunk = []
+    hits
+    @ship_array.each do |ship|
+      if ship.all? {|ship_coord| @hit_array.include? ship_coord}
+        sunk << ship
+      end
+    end
+    "you've sunk ship(s) #{sunk}!"
   end
 
 end

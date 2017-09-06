@@ -96,11 +96,20 @@ class BoardTest < Minitest::Test
         ["D1", " "], ["D2", " "], ["D3", " "], ["D4", " "]
       ]
 
-    assert_equal ["B1", "B2"], board.hit_array
+    assert_equal ["B1", "B2"], board.hits
   end
 
   def test_sunk
+    board.board =
+      [
+        ["A1", " "], ["A2", " "], ["A3", " "], ["A4", " "],
+        ["B1", "H"], ["B2", "H"], ["B3", " "], ["B4", " "],
+        ["C1", " "], ["C2", " "], ["C3", " "], ["C4", " "],
+        ["D1", " "], ["D2", " "], ["D3", " "], ["D4", " "]
+      ]
+    board.ship_array = [['B1', 'B2']]
 
+    assert_equal "you've sunk ship(s) [[\"B1\", \"B2\"]]!", board.sunk
   end
 
 end
