@@ -32,20 +32,15 @@ class BoardTest < Minitest::Test
   end
 
   def test_render_board
-    current_board = board.empty_board
-
-    assert_nil board.render_board(current_board)
+    assert_nil board.render_board
     # note: should see visible printed board where the test was run
   end
 
   def test_shot
-    current_board = board.empty_board
-
-    assert_nil board.shot("A1", current_board)
+    assert_nil board.shot("A1")
   end
 
   def test_place_shot
-    current_board = board.empty_board
     new_board =
       [
         ["A1", "?"], ["A2", " "], ["A3", " "], ["A4", " "],
@@ -54,7 +49,7 @@ class BoardTest < Minitest::Test
         ["D1", " "], ["D2", " "], ["D3", " "], ["D4", " "]
       ]
 
-    assert_equal new_board, board.place_shot("A1", current_board)
+    assert_equal new_board, board.place_shot("A1")
   end
 
   def test_fire_returns_hit_or_miss

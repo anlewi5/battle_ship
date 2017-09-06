@@ -18,7 +18,7 @@ class Board
     ]
   end
 
-  def render_board(board)
+  def render_board
     puts ". 1 2 3 4"
     puts "A #{board[0..3].map {|spot| spot[1]}.join}"
     puts "B #{board[4..7].map {|spot| spot[1]}.join}"
@@ -33,16 +33,16 @@ class Board
   end
 
   #need elsif coordinate not on board
-  def shot(coordinate, board)
+  def shot(coordinate)
     if coordinate != " "
       "this location has already been fired upon, please choose another coordinate"
     else
-      board = place_shot(coordinate, board)
+      place_shot(coordinate)
     end
-    render_board(board)
+    render_board
   end
 
-    def place_shot(coordinate, board)
+    def place_shot(coordinate)
       board.map do |space|
         if coordinate == space[0]
           [coordinate, fire(space[0])]
