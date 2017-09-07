@@ -41,7 +41,6 @@ class Board
     else
       place_shot(coordinate)
     end
-    render_board
   end
 
     def place_shot(coordinate)

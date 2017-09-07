@@ -37,7 +37,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_shot
-    assert_nil board.shot("A1")
+    assert_equal "this location has already been fired upon, please choose another coordinate", board.shot("A1")
   end
 
   def test_place_shot

@@ -11,16 +11,12 @@ class Ship
   end
 
   def coordinates(coordinates)
-    puts "at coordinates"
     @coordinate_array = coordinates.split
     @start_coord = coordinate_array[0]
     @end_coord = coordinate_array[1]
   end
 
   def ship_orientation(ship_length)
-    puts "at ship_orientation"
-    puts "#{start_coord[1]}"
-    puts "#{end_coord[1]}"
     if start_coord[0] == end_coord[0]
       @orientation = "horizontal"
       horizontal_ship(ship_length)
@@ -33,12 +29,10 @@ class Ship
   end
 
   def horizontal_ship(ship_length)
-    puts "horizontal_ship"
     check_horizontal_ship_length(ship_length)
   end
 
   def check_horizontal_ship_length(ship_length)
-    puts "check_horizontal_ship_length"
     if (start_coord[1].to_i - end_coord[1].to_i).abs != ship_length - 1
       "ship is invalid: incorrect ship length"
     else

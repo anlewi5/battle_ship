@@ -63,7 +63,7 @@ class Referee
   def place_ship(user_input, length, board)
     ship = Ship.new
     ship.validate(user_input,length)
-    place_ship(ship.start_coord, ship.end_coord, ship.orientation)
+    board.place_ship(ship.start_coord, ship.end_coord, ship.orientation)
   end
 
   def player_fire
@@ -72,6 +72,7 @@ class Referee
   end
 
   def fire_on(user_input, board)
+    puts user_input
     board.shot(user_input)
   end
 
@@ -96,7 +97,7 @@ class Referee
     player_fire
     #indicate if sunk
     computer_board.render_board
-    if check_game_over(computer_board)
+    if check_game_over(computer_board, computers_turn)
       end_game("player", computer_board)
     else
       computers_turn
@@ -104,20 +105,20 @@ class Referee
   end
 
   def computers_turn
-    fire_on(computer-input, player_board)
+    fire_on("B3", player_board)
     player_board.render_board
-    if check_game_over(player_board)
+    if check_game_over(player_board, players_turn)
       end_game("computer", player_board)
     else
       players_turn
     end
   end
 
-  def check_game_over(board)
+  def check_game_over(board, next_turn)
     if board.ship_array == board.hit_array
       true
     else
-      run_shot_sequence
+      next_turn
     end
   end
 
