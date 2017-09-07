@@ -35,7 +35,6 @@ class Board
     spot
   end
 
-  #need elsif coordinate not on board
   def shot(coordinate)
     if coordinate != " "
       "this location has already been fired upon, please choose another coordinate"

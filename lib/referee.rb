@@ -41,7 +41,8 @@ class Referee
   end
 
   def computer_setup
-    #tell computer to place ships
+    computer_board.place_ship("A3", "A4", "horizontal")
+    computer_board.place_ship("B3", "D3", "vertical")
     puts 'I have laid out my ships on the grid.
           You now need to layout your two ships.
           The first is two units long and the
@@ -51,12 +52,12 @@ class Referee
 
   def two_unit_ship
     puts 'Enter the squares for the two-unit ship:'
-    place_ship(gets, 2, player_board)
+    place_ship(gets.chomp, 2, player_board)
   end
 
   def three_unit_ship
     puts 'Enter the start and end squares for the three-unit ship:'
-    place_ship(gets, 3, player_board)
+    place_ship(gets.chomp, 3, player_board)
   end
 
   def place_ship(user_input, length, board)
@@ -67,7 +68,7 @@ class Referee
 
   def player_fire
     puts 'What coordinate would you like to fire on?'
-    fire_on(gets, computer_board)
+    fire_on(gets.chomp, computer_board)
   end
 
   def fire_on(user_input, board)
