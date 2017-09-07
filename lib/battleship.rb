@@ -5,34 +5,18 @@ referee = Referee.new
 player_board = Board.new
 computer_board = Board.new
 
-puts 'Welcome to BATTLESHIP'
-
-puts 'Would you like to (p)lay, read the (i)nstructions, or (q)uit?'
-user_input = gets
-referee.get_user_input(user_input)
-
-puts 'I have laid out my ships on the grid.
-      You now need to layout your two ships.
-      The first is two units long and the
-      second is three units long.
-      The grid has A1 at the top left and D4 at the bottom right.
-
-    Enter the squares for the two-unit ship:'
-user_input = gets
-referee.place_ship(user_input)
-
-puts 'Enter the start and end squares for the three-unit ship:'
-user_input = gets
-referee.place_ship(user_input)
+referee.welcome
+referee.initial_questions
+referee.computer_setup
+referee.two_unit_ship
+referee.three_unit_ship
 
 #player shot sequence:
-puts computer_board.render_board
-puts 'What coordinate would you like to fire on?'
-user_input = gets
-referee.fire_on(user_input)
+computer_board.render_board
+referee.player_fire
 #indicate whether hit or miss (and if sunk)
-puts computer_board.render_board
-puts 'press enter to complete turn'
+computer_board.render_board
+referee.enter_promt
 
 #computer shot sequence:
 #computer fires
