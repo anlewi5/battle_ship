@@ -3,13 +3,7 @@ require './lib/ship'
 
 class Referee
 
-  attr_reader :user_input
-
-  def get_user_input(user_input)
-    @user_input = user_input
-  end
-
-  def check_user_input
+  def check_user_input(user_input)
     play if user_input == 'p' || 'play'
     instruction if user_input == 'i' || 'read the instructions'
     quit if user_input == 'q' or 'quit'
@@ -27,8 +21,14 @@ class Referee
     #exit game
   end
 
-  def place_ship
-    
+  #tell computer to place ships
+
+  def place_ship(user_input)
+
+  end
+
+  def fire_on(user_input)
+
   end
 
 end
