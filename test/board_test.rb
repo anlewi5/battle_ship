@@ -60,12 +60,20 @@ class BoardTest < Minitest::Test
 
   end
 
-  def test_place_ship
+  def test_place_vertical_ship
     start_coord = "A1"
-    end_coord = "A2"
+    end_coord = "A3"
     orientation = "horizontal"
 
-    assert_equal [], board.place_ship(start_coord, end_coord, orientation)
+    assert_equal [["A1", "A2", "A3"]], board.place_ship(start_coord, end_coord, orientation)
+  end
+
+  def test_place_horizontal_ship
+    start_coord = "A1"
+    end_coord = "C1"
+    orientation = "vertical"
+
+    assert_equal [["A1", "B1", "C1"]], board.place_ship(start_coord, end_coord, orientation)
   end
 
   def test_coordinate_already_picked

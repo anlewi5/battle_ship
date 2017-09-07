@@ -67,7 +67,25 @@ class Board
     end
 
   def place_ship(start_coord, end_coord, orientation, ship_array =[])
-    #check coordinate validity
+    if orientation == "horizontal"
+      letter = start_coord[0]
+      start_num = start_coord[1]
+      end_num = end_coord[1]
+      ship = (start_num..end_num).to_a
+      ship.map! do |num|
+        letter + num
+      end
+      ship_array << ship
+    elsif orientation == "vertical"
+      number = start_coord[1]
+      start_letter = start_coord[0]
+      end_letter = end_coord[0]
+      ship = (start_letter..end_letter).to_a
+      ship.map! do |alpha|
+        alpha + number
+      end
+      ship_array << ship
+    end
     ship_array
   end
 
