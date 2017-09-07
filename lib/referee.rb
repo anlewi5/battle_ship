@@ -50,25 +50,27 @@ class Referee
 
   def two_unit_ship
     puts 'Enter the squares for the two-unit ship:'
-    place_ship(gets)
+    place_ship(gets, 2, player_board)
   end
 
   def three_unit_ship
     puts 'Enter the start and end squares for the three-unit ship:'
-    place_ship(gets)
+    place_ship(gets, 3, player_board)
   end
 
-  def place_ship(user_input)
-
+  def place_ship(user_input, length, board)
+    ship = Ship.new
+    ship.validate(user_input,length)
+    place_ship(ship.start_coord, ship.end_coord, ship.orientation)
   end
 
   def player_fire
     puts 'What coordinate would you like to fire on?'
-    fire_on(gets)
+    fire_on(gets, computer_board)
   end
 
-  def fire_on(user_input)
-
+  def fire_on(user_input, board)
+    board.shot(user_input)
   end
 
   def enter_promt
@@ -90,31 +92,40 @@ class Referee
   def players_turn
     computer_board.render_board
     player_fire
-    #indicate whether hit or miss (and if sunk)
+    #indicate if sunk
     computer_board.render_board
-    check_game_over
-    enter_promt
+    if check_game_over(computer_board)
+      end_game("player")
+    else
+      computers_turn
+    end
   end
 
   def computers_turn
-    #computer shot sequence:
     #computer fires
     #puts whether hit or miss
     player_board.render_board
-    check_game_over
-    #return to player shot sequence
+    if check_game_over(player_board)
+      end_game("computer")
+    else
+      players_turn
+    end
   end
 
   def check_game_over(board)
-    if #ship array coord all have matches in hits array
-      end_game
+    if board.ship_array == board.hit_array
+      true
     else
       run_shot_sequence
     end
   end
 
-  def end_game
-    #puts sorry or congratulations
+  def end_game(winner)
+    if winner == "player"
+      puts "yay, you win!"
+    else
+      puts "sorry, computer won"
+    end
     #puts number of shots by winner
     #puts total time
   end

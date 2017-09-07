@@ -1,7 +1,8 @@
 class Board
 
   attr_accessor :board,
-                :ship_array
+                :ship_array,
+                :hit_array
 
   def initialize
     @board = empty_board
@@ -63,6 +64,7 @@ class Board
           h_or_m = 'M'
         end
       end
+      puts h_or_m
       h_or_m
     end
 
