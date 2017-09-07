@@ -21,7 +21,7 @@ referee.enter_promt
 #computer shot sequence:
 #computer fires
 #puts whether hit or miss
-puts player_board.render_board
+player_board.render_board
 #return to player shot sequence
 
 #end game sequence:

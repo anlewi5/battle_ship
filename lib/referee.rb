@@ -14,7 +14,7 @@ class Referee
 
   def check_user_input(user_input)
     play if user_input == 'p' || 'play'
-    instruction if user_input == 'i' || 'read the instructions'
+    instructions if user_input == 'i' || 'read the instructions'
     quit if user_input == 'q' or 'quit'
   end
 
