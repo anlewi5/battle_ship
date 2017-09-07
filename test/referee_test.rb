@@ -9,4 +9,8 @@ class RefereeTest < Minitest::Test
     assert_instance_of Referee, referee
   end
 
+  def test_referee_takes_user_input
+
+  end
+
 end
