@@ -2,12 +2,14 @@ class Board
 
   attr_accessor :board,
                 :ship_array,
-                :hit_array
+                :hit_array,
+                :shot_count
 
   def initialize
     @board = empty_board
     @ship_array = []
     @hit_array = []
+    @shot_count = 0
   end
 
   def empty_board
@@ -64,6 +66,7 @@ class Board
           h_or_m = 'M'
         end
       end
+      @shot_count +=1
       puts h_or_m
       h_or_m
     end

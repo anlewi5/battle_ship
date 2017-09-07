@@ -36,7 +36,8 @@ class Referee
   end
 
   def quit
-    #exit game
+    puts "Bye :("
+    exit
   end
 
   def computer_setup
@@ -95,18 +96,17 @@ class Referee
     #indicate if sunk
     computer_board.render_board
     if check_game_over(computer_board)
-      end_game("player")
+      end_game("player", computer_board)
     else
       computers_turn
     end
   end
 
   def computers_turn
-    #computer fires
-    #puts whether hit or miss
+    fire_on(computer-input, player_board)
     player_board.render_board
     if check_game_over(player_board)
-      end_game("computer")
+      end_game("computer", player_board)
     else
       players_turn
     end
@@ -120,13 +120,13 @@ class Referee
     end
   end
 
-  def end_game(winner)
+  def end_game(winner, board)
     if winner == "player"
       puts "yay, you win!"
     else
       puts "sorry, computer won"
     end
-    #puts number of shots by winner
+    puts board.shot_count
     #puts total time
   end
 
