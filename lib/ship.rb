@@ -3,6 +3,7 @@ class Ship
   attr_reader :coordinate_array,
               :start_coord,
               :end_coord,
+              :orientation,
               :valid
 
   def initialize
@@ -17,8 +18,10 @@ class Ship
 
   def ship_orientation(ship_length)
     if start_coord[1] == end_coord[1]
+      @orientation = "horizontal"
       horizontal_ship(ship_length)
     elsif start_coord[0] == end_coord[0]
+      @orientation = "vertical"
       vertical_ship(ship_length)
     else
       "ship is invalid: cannot place diagonal"

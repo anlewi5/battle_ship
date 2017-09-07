@@ -66,9 +66,8 @@ class Board
       h_or_m
     end
 
-  def place_ship(coordinate_array, ship_array =[])
+  def place_ship(start_coord, end_coord, orientation, ship_array =[])
     #check coordinate validity
-    ship_array << coordinate_array
     ship_array
   end
 
