@@ -1,5 +1,6 @@
 require './lib/board'
 require './lib/ship'
+require './lib/instructions'
 
 class Referee
 
@@ -16,13 +17,13 @@ class Referee
 
   def initial_questions
     puts 'Would you like to (p)lay, read the (i)nstructions, or (q)uit?'
-    check_user_input(gets)
+    check_user_input(gets.chomp)
   end
 
   def check_user_input(user_input)
-    play if user_input == 'p' || 'play'
-    instructions if user_input == 'i' || 'read the instructions'
-    quit if user_input == 'q' or 'quit'
+    play if user_input == ('p' || 'play')
+    instructions if user_input == ('i' || 'read the instructions')
+    quit if user_input == ('q' or 'quit')
   end
 
   def play
@@ -30,7 +31,8 @@ class Referee
   end
 
   def instructions
-    #print instructions
+    print_instructions
+    initial_questions
   end
 
   def quit
@@ -76,7 +78,6 @@ class Referee
   def run_setup
     welcome
     initial_questions
-    computer_setup
     two_unit_ship
     three_unit_ship
   end
@@ -91,6 +92,7 @@ class Referee
     player_fire
     #indicate whether hit or miss (and if sunk)
     computer_board.render_board
+    check_game_over
     enter_promt
   end
 
@@ -99,10 +101,11 @@ class Referee
     #computer fires
     #puts whether hit or miss
     player_board.render_board
+    check_game_over
     #return to player shot sequence
   end
 
-  def game_over(board)
+  def check_game_over(board)
     if #ship array coord all have matches in hits array
       end_game
     else
