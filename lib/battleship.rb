@@ -5,24 +5,9 @@ referee = Referee.new
 player_board = Board.new
 computer_board = Board.new
 
-referee.welcome
-referee.initial_questions
-referee.computer_setup
-referee.two_unit_ship
-referee.three_unit_ship
-
-#player shot sequence:
-computer_board.render_board
-referee.player_fire
-#indicate whether hit or miss (and if sunk)
-computer_board.render_board
-referee.enter_promt
-
-#computer shot sequence:
-#computer fires
-#puts whether hit or miss
-player_board.render_board
-#return to player shot sequence
+referee.run_setup
+referee.run_shot_sequence
+referee.run_end_game
 
 #end game sequence:
 #puts sorry or congratulations
